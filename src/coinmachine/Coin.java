@@ -1,11 +1,9 @@
 package coinmachine;
 
-import java.util.IllegalFormatException;
-
 /**
  * A Coin represents metalic money with a value.
  */
-public class Coin implements Comparable<Coin> {
+public class Coin {
 	/** value of the coin */
 	private final int value;
 	private final String currency;
@@ -71,9 +69,6 @@ public class Coin implements Comparable<Coin> {
 			Coin coin = (Coin)obj;
 			return (this.value == coin.getValue() && this.currency.equals(coin.getCurrency()));
 				
-//			if (this.value == coin.getValue() && this.currency.equals(coin.getCurrency()))
-//				return true;
-//			return false;
 	}
 
 	/**
@@ -84,9 +79,4 @@ public class Coin implements Comparable<Coin> {
 		return value+"-"+currency;
 	}
 
-
-	@Override
-	public int compareTo(Coin o) {
-		return 0;
-	}
 }

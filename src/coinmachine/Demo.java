@@ -53,6 +53,7 @@ public class Demo {
 		if (machine.isFull()) System.out.println("Machine is FULL.");
 	}
 	
+	
 	/**
 	 * Run a console demo.
 	 * @param args not used
