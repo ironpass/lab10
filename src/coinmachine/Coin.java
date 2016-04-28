@@ -66,16 +66,14 @@ public class Coin implements Comparable<Coin> {
 	public boolean equals(Object obj) {
 //TODO Write a correct equals method for Coin.
 //     You can assume that the currency is naever null.
-		try {
 			if (!(obj instanceof Coin))
 				return false;
-			if (this.value == obj.getValue()) {
-					
-				}
-				return true;
-		} catch (IllegalFormatException e) {
-			e.printStackTrace();
-		}
+			Coin coin = (Coin)obj;
+			return (this.value == coin.getValue() && this.currency.equals(coin.getCurrency()));
+				
+//			if (this.value == coin.getValue() && this.currency.equals(coin.getCurrency()))
+//				return true;
+//			return false;
 	}
 
 	/**
@@ -84,5 +82,11 @@ public class Coin implements Comparable<Coin> {
 	@Override
 	public String toString() {
 		return value+"-"+currency;
+	}
+
+
+	@Override
+	public int compareTo(Coin o) {
+		return 0;
 	}
 }
