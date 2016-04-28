@@ -1,4 +1,5 @@
 package coinmachine;
+import UI.CoinMachineUI;
 import java.util.Scanner;
 
 /**

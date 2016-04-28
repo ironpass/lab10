@@ -69,7 +69,7 @@ public class CoinMachine {
 	 * @return string description of the coin machine
 	 */
 	public String toString() {
-		return String.format("Coin machine with capacity %d5", capacity );
+		return String.format("Coin machine with capacity %d", capacity );
 	}
 
 	/**
