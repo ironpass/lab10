@@ -1,5 +1,7 @@
 package coinmachine;
-import UI.CoinMachineUI;
+import UI.*;
+
+import java.util.Observable;
 import java.util.Scanner;
 
 /**
@@ -10,7 +12,6 @@ import java.util.Scanner;
 public class Demo {
 	// create a java.util.Scanner object for use in all methods
 	private static Scanner console = new Scanner( System.in );
-	private static CoinMachineUI machineUI;
 	
 	/** run the user interface */
 	public void insertDialog(CoinMachine machine) {
@@ -45,7 +46,6 @@ public class Demo {
 	
 	/** Show the number of coins and their total value. */
 	private void displayMachineStatus(CoinMachine machine) {
-		machineUI.update();
 		// CLUDGE: how to get the currency?  Look at the first coin in machine.
 		String currency = "";
 		if (machine.getCount() > 0) currency = machine.getCoins().get(0).getCurrency();
@@ -62,9 +62,12 @@ public class Demo {
 	public static void main(String[] args) {
 		final int capacity = 10;  // how many coins the machine can hold
 		CoinMachine machine = new CoinMachine( capacity );
-		CoinMachineUI machineUI = new CoinMachineUI();
+		CoinCounterUI counterUI = new CoinCounterUI();
+		CoinMachineUI coinMachineUI = new CoinMachineUI();
 		Demo demo = new Demo();
 		//TODO add observers
+		machine.addObserver(counterUI);
+		machine.addObserver(coinMachineUI);
 		demo.insertDialog(machine);
 	}
 }

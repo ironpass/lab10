@@ -61,8 +61,9 @@ public class CoinMachine extends Observable {
 		if ( isFull() ) return false;
 		if (m.getValue() <= 0) throw new IllegalArgumentException("Coin must have positive value");
 		boolean result = coins.add(m);
+		MachineStatus machineStatus = new MachineStatus(isFull(), coins.size()+"");
 		super.setChanged();
-		super.notifyObservers("Add "+m.getValue()+" "+m.getCurrency());
+		super.notifyObservers(machineStatus);
 		return result;
 	}
 	
