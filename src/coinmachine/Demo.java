@@ -63,7 +63,7 @@ public class Demo {
 		final int capacity = 10;  // how many coins the machine can hold
 		CoinMachine machine = new CoinMachine( capacity );
 		CoinCounterUI counterUI = new CoinCounterUI();
-		CoinMachineUI coinMachineUI = new CoinMachineUI();
+		CoinMachineUI coinMachineUI = new CoinMachineUI(machine);
 		Demo demo = new Demo();
 		//TODO add observers
 		machine.addObserver(counterUI);
