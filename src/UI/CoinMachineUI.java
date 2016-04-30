@@ -36,6 +36,7 @@ public class CoinMachineUI extends JFrame implements Observer {
 		balanceLabel = new JLabel("Balance: 0   ");
 		topRow.add(balanceLabel);
 		topRow.add(new JLabel("Status: "));
+		
 		coinCap = new JProgressBar(0, 10);
 		coinCap.setStringPainted(true);
 		coinCap.setString("0");
@@ -49,18 +50,21 @@ public class CoinMachineUI extends JFrame implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				machine.insert(new Coin(1, "Baht"));
 				balanceLabel.setText("Balance: " + machine.getBalance() + "   ");
+				updateBarColor();
 			}
 		});
 		fiveBahtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				machine.insert(new Coin(5, "Baht"));
 				balanceLabel.setText("Balance: " + machine.getBalance() + "   ");
+				updateBarColor();
 			}
 		});
 		tenBahtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				machine.insert(new Coin(10, "Baht"));
 				balanceLabel.setText("Balance: " + machine.getBalance() + "   ");
+				updateBarColor();
 			}
 		});
 		botRow.add(oneBahtButton);
@@ -70,12 +74,23 @@ public class CoinMachineUI extends JFrame implements Observer {
 		mainFrame.add(botRow);
 		add(mainFrame);
 	}
-
+	public void updateBarColor() {
+		if (machine.getCount()<3)
+			coinCap.setForeground(Color.RED);
+		else if (machine.getCount()<6)
+			coinCap.setForeground(Color.ORANGE);
+		else if (machine.getCount()<8) 
+			coinCap.setForeground(Color.YELLOW);
+		else
+			coinCap.setForeground(Color.GREEN);
+		
+	}
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		balanceLabel.setText("Balance: " + ((MachineStatus) arg).getBalance() + "   ");
 		coinCap.setValue(Integer.parseInt(((MachineStatus) arg).getCoinAmount()));
 		coinCap.setString(((MachineStatus) arg).getCoinAmount());
+		updateBarColor();
 	}
 }
