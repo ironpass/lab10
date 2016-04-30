@@ -17,7 +17,8 @@ public class CoinMachineUI extends JFrame implements Observer {
 	JButton fiveBahtButton;
 	JButton tenBahtButton;
 	CoinMachine machine;
-
+	JProgressBar coinCap;
+	
 	public CoinMachineUI(CoinMachine machine) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
@@ -35,7 +36,10 @@ public class CoinMachineUI extends JFrame implements Observer {
 		balanceLabel = new JLabel("Balance: 0   ");
 		topRow.add(balanceLabel);
 		topRow.add(new JLabel("Status: "));
-
+		coinCap = new JProgressBar(0, 10);
+		coinCap.setStringPainted(true);
+		coinCap.setString("0");
+		topRow.add(coinCap);
 		JPanel botRow = new JPanel();
 		botRow.setBorder(BorderFactory.createTitledBorder("Insert Money"));
 		oneBahtButton = new JButton(new ImageIcon(getClass().getClassLoader().getResource("images/1baht.png")));
@@ -71,5 +75,7 @@ public class CoinMachineUI extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		balanceLabel.setText("Balance: " + ((MachineStatus) arg).getBalance() + "   ");
+		coinCap.setValue(Integer.parseInt(((MachineStatus) arg).getCoinAmount()));
+		coinCap.setString(((MachineStatus) arg).getCoinAmount());
 	}
 }
