@@ -10,7 +10,11 @@ import coinmachine.MachineStatus;
 import java.awt.event.*;
 import java.util.Observable;
 import java.util.Observer;
-
+/**
+ * 
+ * @author Akarachai Passavoranan
+ * class for coin machine GUI 
+ */
 public class CoinMachineUI extends JFrame implements Observer {
 	JLabel balanceLabel;
 	JButton oneBahtButton;
@@ -18,14 +22,19 @@ public class CoinMachineUI extends JFrame implements Observer {
 	JButton tenBahtButton;
 	CoinMachine machine;
 	JProgressBar coinCap;
-	
+	/**
+	 * Constructor
+	 * @param machine
+	 */
 	public CoinMachineUI(CoinMachine machine) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 		setVisible(true);
 		this.machine = machine;
 	}
-
+	/**
+	 * initialize UI components
+	 */
 	public void initComponents() {
 		setBounds(500, 200, 500, 300);
 		setResizable(false);
@@ -74,6 +83,9 @@ public class CoinMachineUI extends JFrame implements Observer {
 		mainFrame.add(botRow);
 		add(mainFrame);
 	}
+	/**
+	 * update the bar's color depending on the amount of coin that's been in the machine
+	 */
 	public void updateBarColor() {
 		if (machine.getCount()<3)
 			coinCap.setForeground(Color.RED);

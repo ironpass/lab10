@@ -7,16 +7,26 @@ import coinmachine.MachineStatus;
 
 import java.util.Observable;
 import java.util.Observer;
-
+/**
+ * This class is for coin counter GUI (The small window)
+ * @author Akarachai Passavoranan
+ *
+ */
 public class CoinCounterUI extends JFrame implements Observer {
 	JTextField coinAmountTextField;
 	JLabel statusLabel;
-	
+	/**
+	 * Constructor
+	 * and also showing-the-frame method is called in this constructor
+	 */
 	public CoinCounterUI(){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		initComponents();
 		setVisible(true);
 	}
+	/**
+	 * initialize GUI components
+	 */
 	public void initComponents() {
 		setBounds(200,200,250,100);
 		setResizable(false);
@@ -34,7 +44,9 @@ public class CoinCounterUI extends JFrame implements Observer {
 		mainFrame.add(statusLabel);
 		add(mainFrame);
 	}
-	
+	/**
+	 * update method for observer interface
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
